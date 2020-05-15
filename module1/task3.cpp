@@ -1,6 +1,12 @@
 #include <iostream>
 
-// Write your function here
+auto printString(std::string text, int x) {
+    int i=1;
+    while(i<=x) {
+        std::cout << text;
+        i++;
+    }
+}
 
 int main() {
     printString("Hello", 5);

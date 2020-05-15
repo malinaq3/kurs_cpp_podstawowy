@@ -1,6 +1,14 @@
 #include <iostream>
 
-// Write your function here
+int max(int numA, int numB, int numC) {
+    if((numA>numB) && (numA>numC)) {
+        return numA;
+    } else if((numB>numA) && (numB>numC)) {
+        return numB;
+    } else {
+        return numC;
+    }
+}
 
 int main() {
     std::cout << "max (1, 2, 3): " << max(1, 2, 3) << "\n";
