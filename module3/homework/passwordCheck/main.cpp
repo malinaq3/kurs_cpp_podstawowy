@@ -1,6 +1,7 @@
+#include "validation.hpp"
+
 #include <iostream>
 #include <string>
-#include "validation.hpp"
 
 int main() {
     std::string password;
