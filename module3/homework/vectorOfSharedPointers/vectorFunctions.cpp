@@ -22,12 +22,18 @@ void print (const std::vector<std::shared_ptr<int>>& vec) {
 void add10(std::vector<std::shared_ptr<int>>& vec) {
     for (auto & el :vec) {
         if(el){
-        *el += 10;
+            *el += 10;
         }
     }
 }
 
-void sub10(int* const num) {}
+void sub10(int * const num) {
+    if(num) *num -= 10;
+}
 
-void sub10(std::vector<std::shared_ptr<int>>& vec) {}
+void sub10(std::vector<std::shared_ptr<int>>& vec) {
+    for (auto& el : vec) {
+        sub10(el.get());
+    }
+}
 
