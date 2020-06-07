@@ -1,11 +1,12 @@
 #include "validation.hpp"
 
 #include<iostream>
+#include<ctime>
 
-std::string getErrorMessage(int num) {
-    switch (num) {
+std::string getErrorMessage(const ErrorCode error) {
+    switch (error) {
     case 0:
-        return "Ok";
+        return "OK";
         break;
     case 1:
         return "Password Needs At Least Nine Characters";
@@ -36,17 +37,18 @@ bool doesPasswordsMatch(const std::string& lhs, const std::string& rhs) {
         return true;
 }
 
-ErrorCode checkPasswordRules(std::string str) {
-    ErrorCode num;
-    num = Ok;
+ErrorCode checkPasswordRules(const std::string& str) {
+    std::srand(std::time(nullptr));
+    ErrorCode num = static_cast<ErrorCode>(rand() % 4);
     return num;
     }
 
-int checkPassword(const std::string& lhs, const std::string& rhs) {
+ErrorCode checkPassword(const std::string& lhs, const std::string& rhs) {
     auto num = doesPasswordsMatch(lhs, rhs);
     if (!num) {
         return PasswordsDoesNotMatch;
     }    
-    return Ok;
+    auto rule = checkPasswordRules(lhs);
+    return rule;
     
 }
