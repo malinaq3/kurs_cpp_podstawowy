@@ -23,24 +23,15 @@ std::string getErrorMessage(const ErrorCode error) {
         return "Passwords Does Not Match";
         break;
     }
-return {};
+return "Unknown error code";
 }
 
 bool doesPasswordsMatch(const std::string& lhs, const std::string& rhs) {
-    if (lhs.size() != rhs.size()) {
-        return false;
-    }
-
-    for(int i=0; i<lhs.length(); i++) {
-        if (lhs[i] != rhs[i]) {
-            return false;
-        }
-    }
-        return true;
+    return lhs == rhs;
 }
 
 ErrorCode checkPasswordRules(const std::string& str) {
-    if (str.length() < 9) {
+    if (str.length() < MinPassLength) {
         return PasswordNeedsAtLeastNineCharacters;
     }
 

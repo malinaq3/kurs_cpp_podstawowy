@@ -2,6 +2,8 @@
 
 #include<string>
 
+constexpr size_t MinPassLength = 9;
+
 enum ErrorCode {
     Ok,
     PasswordNeedsAtLeastNineCharacters,
