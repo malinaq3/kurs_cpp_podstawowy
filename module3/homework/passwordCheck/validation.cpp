@@ -1,9 +1,6 @@
 #include "validation.hpp"
 
 #include<algorithm>
-#include<ctype.h>
-#include<iostream>
-#include<ctime>
 
 std::string getErrorMessage(const ErrorCode error) {
     switch (error) {
@@ -26,23 +23,23 @@ std::string getErrorMessage(const ErrorCode error) {
         return "Passwords Does Not Match";
         break;
     }
-return 0;
+return {};
 }
 
 bool doesPasswordsMatch(const std::string& lhs, const std::string& rhs) {
-    if (lhs.size() != rhs.size())   return false;
+    if (lhs.size() != rhs.size()) {
+        return false;
+    }
+
     for(int i=0; i<lhs.length(); i++) {
-            if (lhs[i] != rhs[i]) {
-                return false;
-            }
+        if (lhs[i] != rhs[i]) {
+            return false;
+        }
     }
         return true;
 }
 
 ErrorCode checkPasswordRules(const std::string& str) {
-    /*std::srand(std::time(nullptr));
-    ErrorCode num = static_cast<ErrorCode>(rand() % 4);
-    return num;*/
     if (str.length() < 9) {
         return PasswordNeedsAtLeastNineCharacters;
     }
@@ -58,14 +55,14 @@ ErrorCode checkPasswordRules(const std::string& str) {
     else if (std::none_of(str.begin(), str.end(), ::isupper)) {
         return PasswordNeedsAtLeastOneUppercaseLetter;
     }
+
     return Ok;
 }
+
 ErrorCode checkPassword(const std::string& lhs, const std::string& rhs) {
-    auto num = doesPasswordsMatch(lhs, rhs);
-    if (!num) {
+    if (!doesPasswordsMatch(lhs, rhs)) {
         return PasswordsDoesNotMatch;
     }    
-    auto rule = checkPasswordRules(lhs);
-    return rule;
     
+    return checkPasswordRules(lhs);
 }
