@@ -1,5 +1,7 @@
 #include "validation.hpp"
 
+#include<algorithm>
+#include<ctype.h>
 #include<iostream>
 #include<ctime>
 
@@ -38,11 +40,26 @@ bool doesPasswordsMatch(const std::string& lhs, const std::string& rhs) {
 }
 
 ErrorCode checkPasswordRules(const std::string& str) {
-    std::srand(std::time(nullptr));
+    /*std::srand(std::time(nullptr));
     ErrorCode num = static_cast<ErrorCode>(rand() % 4);
-    return num;
+    return num;*/
+    if (str.length() < 9) {
+        return PasswordNeedsAtLeastNineCharacters;
     }
 
+    else if (std::none_of(str.begin(), str.end(), ::isdigit)) {        
+        return PasswordNeedsAtLeastOneNumber;
+    }
+
+    else if (std::all_of(str.begin(), str.end(), ::isalnum)) {
+        return PasswordNeedsAtLeastOneSpecialCharacter;
+    }
+
+    else if (std::none_of(str.begin(), str.end(), ::isupper)) {
+        return PasswordNeedsAtLeastOneUppercaseLetter;
+    }
+    return Ok;
+}
 ErrorCode checkPassword(const std::string& lhs, const std::string& rhs) {
     auto num = doesPasswordsMatch(lhs, rhs);
     if (!num) {
