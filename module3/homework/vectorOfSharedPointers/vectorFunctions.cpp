@@ -3,6 +3,10 @@
 #include<iostream>
 
 std::vector<std::shared_ptr<int>> generate(int count) {
+    if (count < 1) {
+        return{};
+    }
+    vec.reserve(count);
     std::vector<std::shared_ptr<int>> vec;
     for (int i = 0; i < count; i++) {
         vec.emplace_back(std::make_shared<int>(i));
