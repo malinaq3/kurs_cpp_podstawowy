@@ -6,22 +6,16 @@ std::string getErrorMessage(const ErrorCode error) {
     switch (error) {
     case Ok:
         return "OK";
-        break;
     case PasswordNeedsAtLeastNineCharacters:
         return "Password Needs At Least Nine Characters";
-        break;
     case PasswordNeedsAtLeastOneNumber:
         return "Password Needs At Least One Number";
-        break;
     case PasswordNeedsAtLeastOneSpecialCharacter:
         return "Password Needs At Least One Special Character";
-        break;
     case PasswordNeedsAtLeastOneUppercaseLetter:
         return "Password Needs At Least One Uppercase Letter";
-        break;
     case PasswordsDoesNotMatch:
         return "Passwords Does Not Match";
-        break;
     }
 return "Unknown error code";
 }
