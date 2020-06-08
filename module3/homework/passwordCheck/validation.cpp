@@ -17,7 +17,7 @@ std::string getErrorMessage(const ErrorCode error) {
     case PasswordsDoesNotMatch:
         return "Passwords Does Not Match";
     }
-return "Unknown error code";
+    return "Unknown error code";
 }
 
 bool doesPasswordsMatch(const std::string& lhs, const std::string& rhs) {
